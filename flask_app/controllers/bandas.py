@@ -1,5 +1,5 @@
 from flask import flash, redirect, request, session, render_template
-from flask_app.models.bandas import Bandas
+from flask_app.models.bandas import Banda
 from flask_app.models.usuarios import Usuario
 
 from flask_app import app
@@ -14,13 +14,13 @@ def procesar_pensamiento():
         return redirect("/login")
 
 
-    errores = Pensamiento.validar(request.form)
+    errores = Banda.validar(request.form)
     if len(errores) > 0:
         for error in errores:
             flash(error, "error")
         return redirect("/")
 
-    Pensamiento.save(request.form)
+    Banda.save(request.form)
     flash("pensamiento agregado", "success")
     return redirect("/")
 

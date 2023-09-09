@@ -3,7 +3,7 @@ from flask import session
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models.usuarios import Usuario
 
-class Bandas:
+class Banda:
   def __init__(self, data) -> None:
     self.id = data['id']
     self.nombre = data['nombre']

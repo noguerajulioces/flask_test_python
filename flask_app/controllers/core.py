@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, session
 from flask_app import app
-from flask_app.models.bandas import Bandas
+from flask_app.models.bandas import Banda
 
 @app.route('/')
 def inicio():
@@ -10,6 +10,5 @@ def inicio():
 
 
   return render_template(
-    'inicio.html',
-    banda=Bandas.get_all()
+    'inicio.html'
   )
