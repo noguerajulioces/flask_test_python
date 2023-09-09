@@ -8,7 +8,7 @@ def inicio():
     flash("no estás logeado!!!!", "error")
     return redirect("/login")
 
-
+  bandas = Banda.get_all()
   return render_template(
-    'inicio.html'
+    'inicio.html', bandas=bandas
   )
