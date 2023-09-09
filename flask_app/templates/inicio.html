@@ -1,2 +1,47 @@
+{% extends 'base.html' %}
 
-Hola quet al
+{% block titulo %}Dashboard{% endblock %}
+
+{% block estilos %}
+{% endblock %}
+
+{% block menu %}
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: black;">
+    <div class="container">
+        <a class="navbar-brand" style="font-weight: bold; color: white;">Rock on {{session.usuario.nombre}} {{session.usuario.apellido}}!!</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/ACA LA RUTA DE MIS BANDAS" style="font-weight: bold; color: white;">My bands</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ACA LA RUTA DE CREAR BANDA" style="font-weight: bold; color: white;">Add band</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/salir" style="font-weight: bold; color: white;">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block contenido %}
+    <h1>   </h1>
+
+    <form action="/procesar_bandas" method="post">
+        <div class="row g-3 align-items-center">
+            <div class="col-9">
+                <input type="text" id="banda" name="banda" class="form-control" placeholder="Agrega una banda aqui">
+            </div>
+            <div class="col-3">
+                <button class="btn btn-primary" type="submit">Añadir Banda</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
