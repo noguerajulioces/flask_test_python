@@ -10,6 +10,7 @@ class Banda:
     self.fundador_id = data['fundador_id']
     self.genero = data['genero']
     self.origin = data['origen']
+    self.usuarios_ids = data['usuarios_ids']
 
   def __str__(self) -> str:
     return f"{self.nombre}"  # Cambiado de self.banda a self.nombre

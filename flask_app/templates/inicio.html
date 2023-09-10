@@ -46,7 +46,7 @@
         <tr>
             <td>{{ banda.nombre }}</td>
             <td>{{ banda.fundador_id }}</td>
-            <td>{{ banda.genero }}</td>
+            <td>{{ banda.usuarios_ids }}</td>
             <td>
               {% if banda.fundador_id == session['usuario']['nombre'] %}
                 <a href="/bandas/{{ banda.id }}/editar" class="btn btn-sm btn-secondary">Editar</a>
@@ -54,9 +54,14 @@
                   <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                 </form>
               {% else %}
-                <a href="/bandas/{{ banda.id }}/join" class="btn btn-sm btn-success">Join</a>
-
-                <a href="/bandas/{{ banda.id }}/quit" class="btn btn-sm btn-danger">Quit</a>
+                {% if banda.usuarios_ids %}
+                  {% set usuarios_ids_list = banda.usuarios_ids.split(',') %}
+                  {% if session['usuario']['id'] in usuarios_ids_list %}
+                    <a href="/bandas/{{ banda.id }}/join" class="btn btn-sm btn-success">Join</a>
+                  {% else %}
+                    <a href="/bandas/{{ banda.id }}/quit" class="btn btn-sm btn-danger">Quit</a>
+                  {% endif %}
+                {% endif %}
               {% endif %}
             </td>
         </tr>
