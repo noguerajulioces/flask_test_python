@@ -36,7 +36,10 @@
     <ul class="list-group">
         {% for banda in bandas %}
             <li class="list-group-item">
-                {{ banda.nombre }} - Editar - Eliminar
+              {{ banda.nombre }} - Editar -
+              <form action="/bandas/{{ banda.id }}/eliminar" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+              </form>
             </li>
         {% endfor %}
     </ul>

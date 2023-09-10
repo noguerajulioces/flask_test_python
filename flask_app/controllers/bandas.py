@@ -43,4 +43,14 @@ def actualizar_banda(banda_id):
   Banda.update(data)
   return redirect('/mis_bandas')
 
+@app.route('/bandas/<int:banda_id>/eliminar', methods=['POST'])
+def eliminar_banda(banda_id):
+  Banda.eliminar(banda_id)
+  current_url = request.referrer
+  if current_url.endswith('/'):
+    return redirect('/')
+  else:
+    return redirect('/mis_bandas')
+
+
 

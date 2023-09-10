@@ -65,11 +65,11 @@ class Banda:
     return connectToMySQL(os.getenv('BASE_DATOS')).query_db(query, data)
 
   @classmethod
-  def eliminar(cls, id ):
-    query = "DELETE FROM bandas WHERE id = %(id)s;"
-    data = { 'id': id }
-    connectToMySQL(os.getenv('BASE_DATOS')).query_db( query, data )
-    return True
+  def eliminar(cls, banda_id):
+    query = "DELETE FROM bandas WHERE id = %(banda_id)s;"
+    data = {"banda_id": banda_id}
+    connectToMySQL(os.getenv('BASE_DATOS')).query_db(query, data)
+
 
   def delete(self):
     query = "DELETE FROM bandas WHERE id = %(id)s;"
