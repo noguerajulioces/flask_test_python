@@ -24,7 +24,8 @@ def nueva_banda():
 def mis_bandas():
   usuario_id = session['usuario']['id']
   bandas = Banda.get_bandas_by_usuario(usuario_id)
-  return render_template('mis_bandas.html', bandas=bandas)
+  joined = Banda.get_bandas_usuario(usuario_id)
+  return render_template('mis_bandas.html', bandas=bandas, joined=joined)
 
 @app.route('/bandas/<int:banda_id>/editar', methods=['GET'])
 def editar_banda(banda_id):
@@ -52,5 +53,14 @@ def eliminar_banda(banda_id):
   else:
     return redirect('/mis_bandas')
 
+@app.route('/bandas/<int:banda_id>/quit')
+def eliminar_relacion(banda_id):
+  Banda.eliminar_relacion(banda_id)
+  return redirect('/')
 
+
+@app.route('/bandas/<int:banda_id>/join')
+def agregar_relacion(banda_id):
+  Banda.agregar_relacion(banda_id)
+  return redirect('/')
 

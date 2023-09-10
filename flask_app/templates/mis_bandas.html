@@ -44,5 +44,14 @@
             </li>
         {% endfor %}
     </ul>
+
+    <h1 class="my-4">Joined</h1>
+    <ul class="list-group">
+        {% for banda in joined %}
+            <li class="list-group-item">
+              {{ banda.nombre }} -
+              <a href="/bandas/{{ banda.id }}/quit" class="btn btn-sm btn-danger">Quit</a>
+        {% endfor %}
+    </ul>
   </div>
 {% endblock %}

@@ -53,6 +53,10 @@
                 <form action="/bandas/{{ banda.id }}/eliminar" method="POST" style="display:inline;">
                   <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                 </form>
+              {% else %}
+                <a href="/bandas/{{ banda.id }}/join" class="btn btn-sm btn-success">Join</a>
+
+                <a href="/bandas/{{ banda.id }}/quit" class="btn btn-sm btn-danger">Quit</a>
               {% endif %}
             </td>
         </tr>
