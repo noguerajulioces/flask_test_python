@@ -36,7 +36,8 @@
     <ul class="list-group">
         {% for banda in bandas %}
             <li class="list-group-item">
-              {{ banda.nombre }} - Editar -
+              {{ banda.nombre }} -
+              <a href="/bandas/{{ banda.id }}/editar" class="btn btn-sm btn-secondary">Editar</a> -
               <form action="/bandas/{{ banda.id }}/eliminar" method="POST" style="display:inline;">
                 <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
               </form>

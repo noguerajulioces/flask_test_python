@@ -10,7 +10,7 @@ def nueva_banda():
   if request.method == 'POST':
     data = {
         "nombre": request.form['nombre'],
-        "socio_fundador": session['usuario']['id'],
+        "fundador_id": session['usuario']['id'],
         "genero": request.form['genero'],
         "origen": request.form['origen']
     }
@@ -36,7 +36,7 @@ def actualizar_banda(banda_id):
   data = {
     "id": banda_id,
     "nombre": request.form['nombre'],
-    "socio_fundador": session['usuario']['id'],
+    "fundador_id": session['usuario']['id'],
     "genero": request.form['genero'],
     "origen": request.form['origen'],
   }

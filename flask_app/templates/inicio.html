@@ -45,10 +45,10 @@
         {% for banda in bandas %}
         <tr>
             <td>{{ banda.nombre }}</td>
-            <td>{{ banda.socio_fundador }}</td>
+            <td>{{ banda.fundador_id }}</td>
             <td>{{ banda.genero }}</td>
             <td>
-              {% if banda.socio_fundador != session['usuario']['id'] %}
+              {% if banda.fundador_id == session['usuario']['id'] %}
                 <a href="/bandas/{{ banda.id }}/editar" class="btn btn-sm btn-secondary">Editar</a>
                 <form action="/bandas/{{ banda.id }}/eliminar" method="POST" style="display:inline;">
                   <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>

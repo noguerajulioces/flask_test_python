@@ -7,7 +7,7 @@ class Banda:
   def __init__(self, data) -> None:
     self.id = data['id']
     self.nombre = data['nombre']
-    self.socio_fundador = data['socio_fundador']
+    self.fundador_id = data['fundador_id']
     self.genero = data['genero']
     self.origin = data['origen']
 
@@ -28,13 +28,13 @@ class Banda:
 
   @classmethod
   def save(cls, data):
-    query = "INSERT INTO bandas (nombre, socio_fundador, genero) VALUES (%(nombre)s, %(socio_fundador)s, %(genero)s);"
+    query = "INSERT INTO bandas (nombre, fundador_id, genero) VALUES (%(nombre)s, %(fundador_id)s, %(genero)s);"
     return connectToMySQL(os.getenv('BASE_DATOS')).query_db(query, data)
 
 
   @classmethod
   def get_bandas_by_usuario(cls, usuario_id):
-    query = "SELECT * FROM bandas WHERE socio_fundador = %(usuario_id)s;"
+    query = "SELECT * FROM bandas WHERE fundador_id = %(usuario_id)s;"
     data = {"usuario_id": usuario_id}
     resultados = connectToMySQL(os.getenv('BASE_DATOS')).query_db(query, data)
 
