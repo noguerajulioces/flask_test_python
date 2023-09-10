@@ -10,10 +10,18 @@ def nueva_banda():
   if request.method == 'POST':
     data = {
         "nombre": request.form['nombre'],
-        "socio_fundador": session['usuario'],
+        "socio_fundador": session['usuario']['id'],
         "genero": request.form['genero'],
         "origen": request.form['origen']
     }
     Banda.save(data)
     return redirect('/')
   return render_template('nueva_banda.html')
+
+
+# Route para renderizar mis banddas
+@app.route('/mis_bandas', methods=['GET'])
+def mis_bandas():
+  usuario_id = session['usuario']['id']
+  bandas = Banda.get_bandas_by_usuario(usuario_id)
+  return render_template('mis_bandas.html', bandas=bandas)

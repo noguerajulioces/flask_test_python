@@ -20,7 +20,6 @@ class Banda:
     query = "SELECT * FROM bandas"
     conexion = connectToMySQL(os.getenv('BASE_DATOS'))
     resultados = conexion.query_db(query)
-    print(os.getenv('BASE_DATOS'))
     print('Resultados de la consulta:', resultados)
     for banda in resultados:
       bandas.append(cls(banda))
@@ -34,15 +33,16 @@ class Banda:
 
 
   @classmethod
-  def get(cls, id ):
-    query = "SELECT * FROM bandas WHERE id = %(id)s;"
-    data = { 'id': id }
-    resultados = connectToMySQL(os.getenv('BASE_DATOS')).query_db( query, data )
-    if resultados:
-      return cls(resultados[0])
+  def get_bandas_by_usuario(cls, usuario_id):
+    query = "SELECT * FROM bandas WHERE socio_fundador = %(usuario_id)s;"
+    data = {"usuario_id": usuario_id}
+    resultados = connectToMySQL(os.getenv('BASE_DATOS')).query_db(query, data)
 
-    return None
+    bandas = []
+    for resultado in resultados:
+      bandas.append(cls(resultado))
 
+    return bandas
 
   @classmethod
   def eliminar(cls, id ):

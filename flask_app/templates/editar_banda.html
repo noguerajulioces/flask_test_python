@@ -1,0 +1,53 @@
+editar_banda.html
+{% extends 'base.html' %}
+
+{% block titulo %}Editar Banda {% endblock %}
+
+{% block estilos %}
+{% endblock %}
+
+{% block menu %}
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: black;">
+    <div class="container">
+        <a class="navbar-brand" style="font-weight: bold; color: white;">Rock on {{session.usuario.nombre}} {{session.usuario.apellido}}!!</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/ACA LA RUTA DE MIS BANDAS" style="font-weight: bold; color: white;">MY BANDS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ACA LA RUTA DE TODAS LAS BANDAS" style="font-weight: bold; color: white;">ALL BANDS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/salir" style="font-weight: bold; color: white;">LOGOUT</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block contenido %}
+<div class="container">
+    <h1>Editar la información de banda</h1>
+    <form action="/bandas/editar/{{ editar_banda.id }}" method="POST">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" class="form-control" value="{{ editar_banda.nombre }}" required>
+        </div>
+        <div class="form-group">
+            <label for="genero">Genero musical:</label>
+            <textarea name="genero" class="form-control" rows="4" required>{{ editar_banda.genero }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="origen">Origen:</label>
+            <input type="text" name="origen" class="form-control" value="{{ editar_banda.origen }}" required>
+        </div>
+        <button type="submit" class="btn btn-warning mt-3">Actualizar banda</button>
+    </form>
+</div>
+{% endblock %}

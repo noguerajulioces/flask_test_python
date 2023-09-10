@@ -31,26 +31,14 @@
 {% endblock %}
 
 {% block contenido %}
-    <h1>All Bands</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Band Name</th>
-          <th scope="col">Founding Member</th>
-          <th scope="col">Gender</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
+  <div class="container">
+    <h1 class="my-4">Mis Bandas</h1>
+    <ul class="list-group">
         {% for banda in bandas %}
-        <tr>
-            <td>{{ banda.nombre }}</td>
-            <td>{{ banda.socio_fundador }}</td>
-            <td>{{ banda.genero }}</td>
-            <td>Edit</td>
-        </tr>
+            <li class="list-group-item">
+                {{ banda.nombre }} - Editar - Eliminar
+            </li>
         {% endfor %}
-      </tbody>
-    </table>
-
+    </ul>
+  </div>
 {% endblock %}
