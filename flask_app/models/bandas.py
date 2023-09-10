@@ -45,6 +45,26 @@ class Banda:
     return bandas
 
   @classmethod
+  def get(cls, banda_id):
+    query = "SELECT * FROM bandas WHERE id = %(banda_id)s;"
+    data = {"banda_id": banda_id}
+    resultados = connectToMySQL(os.getenv('BASE_DATOS')).query_db(query, data)
+
+    if resultados:
+        return cls(resultados[0])
+    else:
+        return None
+
+  @classmethod
+  def update(cls, data):
+    query = """
+      UPDATE bandas
+      SET nombre = %(nombre)s, genero = %(genero)s, origen = %(origen)s
+      WHERE id = %(id)s;
+    """
+    return connectToMySQL(os.getenv('BASE_DATOS')).query_db(query, data)
+
+  @classmethod
   def eliminar(cls, id ):
     query = "DELETE FROM bandas WHERE id = %(id)s;"
     data = { 'id': id }

@@ -1,4 +1,3 @@
-editar_banda.html
 {% extends 'base.html' %}
 
 {% block titulo %}Editar Banda {% endblock %}
@@ -34,18 +33,18 @@ editar_banda.html
 {% block contenido %}
 <div class="container">
     <h1>Editar la información de banda</h1>
-    <form action="/bandas/editar/{{ editar_banda.id }}" method="POST">
+    <form action="/bandas/{{ banda.id }}/editar" method="POST">
         <div class="form-group">
             <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" class="form-control" value="{{ editar_banda.nombre }}" required>
+            <input type="text" name="nombre" class="form-control" value="{{ banda.nombre }}" required>
         </div>
         <div class="form-group">
             <label for="genero">Genero musical:</label>
-            <textarea name="genero" class="form-control" rows="4" required>{{ editar_banda.genero }}</textarea>
+            <textarea name="genero" class="form-control" rows="4" required>{{ banda.genero }}</textarea>
         </div>
         <div class="form-group">
             <label for="origen">Origen:</label>
-            <input type="text" name="origen" class="form-control" value="{{ editar_banda.origen }}" required>
+            <input type="text" name="origen" class="form-control" value="{{ banda.origen }}" required>
         </div>
         <button type="submit" class="btn btn-warning mt-3">Actualizar banda</button>
     </form>

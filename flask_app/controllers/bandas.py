@@ -25,3 +25,22 @@ def mis_bandas():
   usuario_id = session['usuario']['id']
   bandas = Banda.get_bandas_by_usuario(usuario_id)
   return render_template('mis_bandas.html', bandas=bandas)
+
+@app.route('/bandas/<int:banda_id>/editar', methods=['GET'])
+def editar_banda(banda_id):
+  banda = Banda.get(banda_id)
+  return render_template('editar_banda.html', banda=banda)
+
+@app.route('/bandas/<int:banda_id>/editar', methods=['POST'])
+def actualizar_banda(banda_id):
+  data = {
+    "id": banda_id,
+    "nombre": request.form['nombre'],
+    "socio_fundador": session['usuario']['id'],
+    "genero": request.form['genero'],
+    "origen": request.form['origen'],
+  }
+  Banda.update(data)
+  return redirect('/mis_bandas')
+
+

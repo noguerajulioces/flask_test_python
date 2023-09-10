@@ -47,7 +47,11 @@
             <td>{{ banda.nombre }}</td>
             <td>{{ banda.socio_fundador }}</td>
             <td>{{ banda.genero }}</td>
-            <td>Edit</td>
+            <td>
+              {% if banda.socio_fundador == session['usuario']['id'] %}
+                <a href="/bandas/{{ banda.id }}/editar" class="btn btn-sm btn-secondary">Editar</a>
+              {% endif %}
+            </td>
         </tr>
         {% endfor %}
       </tbody>
