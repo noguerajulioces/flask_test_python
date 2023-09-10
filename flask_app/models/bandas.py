@@ -16,13 +16,30 @@ class Banda:
 
   @classmethod
   def get_all(cls):
+    query = """
+    SELECT
+      bandas.id AS id,
+      bandas.nombre AS nombre,
+      bandas.genero AS genero,
+      bandas.origen AS origen,
+      usuarios.nombre AS fundador_id
+    FROM
+      bandas
+    JOIN
+      usuarios ON bandas.fundador_id = usuarios.id;
+    """
+    resultados = connectToMySQL(os.getenv('BASE_DATOS')).query_db(query)
+
     bandas = []
-    query = "SELECT * FROM bandas"
-    conexion = connectToMySQL(os.getenv('BASE_DATOS'))
-    resultados = conexion.query_db(query)
-    print('Resultados de la consulta:', resultados)
-    for banda in resultados:
-      bandas.append(cls(banda))
+    for resultado in resultados:
+      banda = cls({
+        'id': resultado['id'],
+        'nombre': resultado['nombre'],
+        'origen': resultado['origen'],
+        'genero': resultado['genero'],
+        'fundador_id': resultado['fundador_id']
+      })
+      bandas.append(banda)
 
     return bandas
 

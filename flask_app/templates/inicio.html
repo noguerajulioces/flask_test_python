@@ -48,7 +48,7 @@
             <td>{{ banda.fundador_id }}</td>
             <td>{{ banda.genero }}</td>
             <td>
-              {% if banda.fundador_id == session['usuario']['id'] %}
+              {% if banda.fundador_id == session['usuario']['nombre'] %}
                 <a href="/bandas/{{ banda.id }}/editar" class="btn btn-sm btn-secondary">Editar</a>
                 <form action="/bandas/{{ banda.id }}/eliminar" method="POST" style="display:inline;">
                   <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
